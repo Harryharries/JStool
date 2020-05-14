@@ -64,3 +64,64 @@ function getStyle(obj, name) {
     }
 
 }
+
+//define 4 funcations with can add class to object
+/*
+ * parameter:
+ * 	obj - the object 
+ *  cn - class value
+ * 	
+ */
+function addClass(obj, cn) {
+
+    //check duplicate
+    if (!hasClass(obj, cn)) {
+        obj.className += " " + cn;
+    }
+
+}
+
+/*
+ * check duplicate class
+ * if there is -> ture 
+ * if there is not ->  false
+ */
+function hasClass(obj, cn) {
+
+    //use regex
+    //var reg = /\bb2\b/;
+    var reg = new RegExp("\\b" + cn + "\\b");
+
+    return reg.test(obj.className);
+
+}
+
+/*
+ * delete a class
+ */
+function removeClass(obj, cn) {
+    //regex
+    var reg = new RegExp("\\b" + cn + "\\b");
+
+    //remove class
+    obj.className = obj.className.replace(reg, "");
+
+}
+
+/*
+ * toggleClass can swap the object has/do not has a class
+ * if there is the class -> remove
+ * if there is not the class ->  add
+ */
+function toggleClass(obj, cn) {
+
+    //check if there is the class
+    if (hasClass(obj, cn)) {
+        //if there is the class -> remove
+        removeClass(obj, cn);
+    } else {
+        //if there is not the class ->  add
+        addClass(obj, cn);
+    }
+
+}
