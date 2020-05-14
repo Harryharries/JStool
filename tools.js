@@ -88,7 +88,7 @@ function addClass(obj, cn) {
  */
 function hasClass(obj, cn) {
 
-    //use regex
+    //use regex 
     //var reg = /\bb2\b/;
     var reg = new RegExp("\\b" + cn + "\\b");
 
