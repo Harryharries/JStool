@@ -4,7 +4,8 @@
  * 	obj: the object will do the move animiation
  * 	attr: move to left/top/width/height
  * 	destination: obj will stop at here
- * 	speed: how fast it will go
+ * 	speed: how fast it will go   
+ * 
  *  callback: when finish, call one more custom function
  */
 function move(obj, attr, destination, speed, callback) {
