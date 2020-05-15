@@ -81,6 +81,8 @@ function addClass(obj, cn) {
 
 }
 
+
+
 /*
  * check duplicate class
  * if there is -> ture 
