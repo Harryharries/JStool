@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MyMenu</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        a,
+        img {
+            border: 0;
+            text-decoration: none;
+        }
+        
+        body {
+            font: 12px/180% Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="css/sdmenu.css" />
+
+    <script type="text/javascript" src="js/tools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+
+            /*
+             * every menu is a div
+             * 	when a div has collapsed class，div is folded
+             * 	if not, then unfolded
+             */
+
+            /*
+             * click and show context
+             */
+            //get all element which "class is menuSpan"
+            var menuSpan = document.querySelectorAll(".menuSpan");
+
+            //current opened menu
+            var openDiv = menuSpan[0].parentNode;
+
+            //bind in span menu
+            for (var i = 0; i < menuSpan.length; i++) {
+                menuSpan[i].onclick = function() {
+
+                    //this is the span I click
+                    //div
+                    var parentDiv = this.parentNode;
+
+                    //change Menu(open / close)
+                    toggleMenu(parentDiv);
+
+
+                    //if click the opend div, just close it
+                    if (openDiv != parentDiv && !hasClass(openDiv, "collapsed")) {
+                        //only allow open 1 menu
+                        //change Menu(open / close)
+                        toggleMenu(openDiv);
+                    }
+                    openDiv = parentDiv;
+
+                };
+            }
+
+            /*
+             * change fold/unfold menu
+             */
+            function toggleMenu(obj) {
+                //get height
+                var begin = obj.offsetHeight;
+
+                toggleClass(obj, "collapsed");
+
+                //get result height
+                var end = obj.offsetHeight;
+
+                //start play animation
+                //reset height
+                obj.style.height = begin + "px";
+
+                //play
+                move(obj, "height", end, 10, function() {
+                    //delete the style.height
+                    obj.style.height = "";
+                });
+
+            }
+
+
+        };
+    </script>
+
+</head>
+
+<body>
+
+    <div id="my_menu" class="sdmenu">
+        <div>
+            <span class="menuSpan">MyExperince</span>
+            <a href="#">MyWorks</a>
+            <a href="#">email</a>
+            <a href="#">demo</a>
+            <a href="#">Education</a>
+            <a href="#">myLife</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">About me</span>
+            <a href="#">blog</a>
+            <a href="#">linkedin</a>
+            <a href="#">github</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">MyResume</span>
+            <a href="#">JavaScript</a>
+            <a href="#">C++</a>
+            <a href="#">Mobile</a>
+            <a href="#">DevOps</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">Achievement</span>
+            <a href="#">Completion</a>
+            <a href="#">Awards</a>
+            <a href="#">Speech</a>
+            <a href="#">Photos</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">My Code</span>
+            <a href="#">JavaScript</a>
+            <a href="#">C++</a>
+        </div>
+    </div>
+</body>
+
+</html>
